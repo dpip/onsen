@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useContext } from "react";
 
-function App() {
+import { AppContext } from "./AppContext.js";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+
+import Home from "./pages/Home";
+import Portal from "./pages/Portal";
+import { AppProvider } from "./AppContext.js";
+
+const App = (props) => {
+  const [state] = useContext(AppContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <div className="App">
+        <header className="App-header">
+          <h3>Constellation</h3>
+        </header>
+        <BrowserRouter>
+          <Redirect to="/" />
+          <Switch>
+            <Route exact path={"/"} component={Home} />
+            <Route exact path={"/portal"} component={Portal} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </AppProvider>
   );
-}
+};
 
 export default App;
