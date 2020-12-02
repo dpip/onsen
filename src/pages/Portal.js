@@ -18,16 +18,15 @@ import "onsenui/css/onsen-css-components.css";
 const Portal = (props) => {
   const [state] = useContext(AppContext);
   const history = useHistory();
-  const stateArray = [state.userName, state.birthDate, state.selected];
 
-  const handleBack = () => {
+  const handleBack = (e) => {
     history.push({ pathname: "/" });
   };
   return (
     <Page>
       <Toolbar>
         <div className="left">
-          <BackButton onClick={() => handleBack()}>Back</BackButton>
+          <BackButton onClick={(e) => handleBack(e)}>Back</BackButton>
         </div>
         <div className="center">Your submission details</div>
         <div className="right">
@@ -43,18 +42,15 @@ const Portal = (props) => {
       <List
         dataSource={[
           state.userName,
-          state.birthDate,
+          state.date,
           state.checkedOne,
           state.checkedTwo,
           state.checkedThree,
           state.radio,
           state.selected,
         ]}
-        renderRow={(row, idx) => <ListItem>{row}</ListItem>}
+        renderRow={(row, idx) => <ListItem key={idx}>{row}</ListItem>}
       />
-      {stateArray.map((item, index) => {
-        <p>{item}</p>;
-      })}
     </Page>
   );
 };

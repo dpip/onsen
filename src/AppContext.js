@@ -5,16 +5,12 @@ const AppContext = React.createContext([{}, () => {}]);
 const AppProvider = (props) => {
   const [state, setState] = useState({
     userName: "",
-    birthDate: "",
-    checkedOne: "Service one: ",
-    checkedTwo: "Service two: ",
-    checkedThree: "Service three: ",
+    date: "",
+    checkedOne: "Service one: No",
+    checkedTwo: "Service two: No",
+    checkedThree: "Service three: No",
     radio: "",
-    selected: "1",
-    errors: {
-      userName: "",
-      birthDate: "",
-    },
+    selected: "",
   });
   return (
     <AppContext.Provider value={[state, setState]}>

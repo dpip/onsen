@@ -13,9 +13,6 @@ const App = (props) => {
   return (
     <AppProvider>
       <div className="App">
-        <header className="App-header">
-          <h3>Constellation</h3>
-        </header>
         <BrowserRouter>
           <Redirect to="/" />
           <Switch>

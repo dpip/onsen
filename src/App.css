@@ -1,26 +1,25 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  padding: 0rem 0rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 h3 {
   padding: 0rem 2rem;
+}
+
+.page__content {
+  padding: 1rem !important;
 }
 
 .login-card {
   display: flex !important;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
+  transform: translateY(20px);
+  opacity: 0;
+  max-width: 500px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  animation-name: upWard;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 2);
 }
 
 .radio-group {
@@ -44,4 +43,32 @@ h3 {
 .checkbox,
 .radio {
   padding-bottom: 1rem;
+}
+
+.list {
+  margin: 0rem 1rem !important;
+  max-width: 500px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 1rem !important;
+  animation-name: upWard;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 2);
+}
+
+.list-item {
+  padding: 1rem !important;
+}
+
+@keyframes upWard {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }

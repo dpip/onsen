@@ -14,7 +14,6 @@ import {
   Toolbar,
   ToolbarButton,
   Icon,
-  BackButton,
 } from "react-onsenui";
 import "onsenui/css/onsenui.css";
 import "onsenui/css/onsen-css-components.css";
@@ -22,20 +21,15 @@ import "onsenui/css/onsen-css-components.css";
 const Home = (props) => {
   const history = useHistory();
   const [state, setState] = useContext(AppContext);
-  console.log("logging props", state);
 
-  const handleClick = () => {
-    history.push({ pathname: "/portal", userData: state });
-  };
-
-  const isFormValid = () => {
-    return state.userName && state.birthDate;
+  const handleClick = (e) => {
+    history.push({ pathname: "/portal" });
   };
 
   return (
-    <Page>
+    <Page class={"home-page"}>
       <Toolbar>
-        <div className="left">{/* <BackButton>Back</BackButton> */}</div>
+        <div className="left" />
         <div className="center">Enter your information</div>
         <div className="right">
           <ToolbarButton>
@@ -48,7 +42,7 @@ const Home = (props) => {
       <br></br>
       <br></br>
       <Card class={"login-card"}>
-        <h4>Welcome! Tell us about yourself</h4>
+        <h2>Your information</h2>
         <p>What's your name?</p>
         <form id={"userinformation"}>
           <Input
@@ -62,14 +56,14 @@ const Home = (props) => {
             modifier="material"
             placeholder="Your name"
           />
-          <p>What's your birthdate?</p>
+          <p>What's your starting date?</p>
           <Input
-            id={"birthdate"}
-            value={state.birthDate}
+            id={"date"}
+            value={state.date}
             float
             type={"date"}
             onChange={(event) => {
-              setState({ ...state, birthDate: event.target.value });
+              setState({ ...state, date: event.target.value });
             }}
             modifier="material"
           />
@@ -133,7 +127,7 @@ const Home = (props) => {
                   setState({ ...state, radio: event.target.value });
                 }}
                 modifier="material"
-                value={"one"}
+                value={"Internet"}
                 name={"r-selector"}
               />
               &nbsp; Internet
@@ -145,7 +139,7 @@ const Home = (props) => {
                   setState({ ...state, radio: event.target.value });
                 }}
                 modifier="material"
-                value={"two"}
+                value={"Word of mouth"}
                 name={"r-selector"}
               />
               &nbsp; Word of mouth
@@ -157,7 +151,7 @@ const Home = (props) => {
                   setState({ ...state, radio: event.target.value });
                 }}
                 modifier="material"
-                value={"three"}
+                value={"Other"}
                 name={"r-selector"}
               />
               &nbsp; Other
@@ -171,19 +165,17 @@ const Home = (props) => {
                 setState({ ...state, selected: event.target.value })
               }
             >
-              <option value="1">One day</option>
-              <option value="2">Less than a week</option>
-              <option value="3">More than a week</option>
+              <option disabled>Select an option</option>
+              <option value="One day">One day</option>
+              <option value="Two days">Less than a week</option>
+              <option value="Three days">More than a week</option>
             </Select>
           </div>
           <Button
             class={"submit-button"}
-            onClick={handleClick}
+            onClick={(e) => handleClick(e)}
             disabled={
-              !state.userName ||
-              !state.birthDate ||
-              !state.radio ||
-              !state.selected
+              !state.userName || !state.date || !state.radio || !state.selected
             }
           >
             Submit
