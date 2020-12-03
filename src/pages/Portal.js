@@ -18,6 +18,15 @@ import "onsenui/css/onsen-css-components.css";
 const Portal = (props) => {
   const [state] = useContext(AppContext);
   const history = useHistory();
+  const descriptions = [
+    "Name",
+    "Date",
+    "Service one selected",
+    "Service two selected",
+    "Service three selected",
+    "How you heard about us",
+    "Stay duration",
+  ];
 
   const handleBack = (e) => {
     history.push({ pathname: "/" });
@@ -38,7 +47,7 @@ const Portal = (props) => {
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
+
       <List
         dataSource={[
           state.userName,
@@ -49,7 +58,13 @@ const Portal = (props) => {
           state.radio,
           state.selected,
         ]}
-        renderRow={(row, idx) => <ListItem key={idx}>{row}</ListItem>}
+        renderRow={(row, idx) => (
+          <ListItem key={idx}>
+            <strong>{descriptions[idx]} : </strong>
+            &nbsp;
+            {row}
+          </ListItem>
+        )}
       />
     </Page>
   );

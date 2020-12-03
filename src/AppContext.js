@@ -6,9 +6,9 @@ const AppProvider = (props) => {
   const [state, setState] = useState({
     userName: "",
     date: "",
-    checkedOne: "Service one: No",
-    checkedTwo: "Service two: No",
-    checkedThree: "Service three: No",
+    checkedOne: "false",
+    checkedTwo: "false",
+    checkedThree: "false",
     radio: "",
     selected: "",
   });

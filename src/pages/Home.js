@@ -22,7 +22,7 @@ const Home = (props) => {
   const history = useHistory();
   const [state, setState] = useContext(AppContext);
 
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     history.push({ pathname: "/portal" });
   };
 
@@ -40,44 +40,47 @@ const Home = (props) => {
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
       <Card class={"login-card"}>
         <h2>Your information</h2>
-        <p>What's your name?</p>
+
         <form id={"userinformation"}>
-          <Input
-            id={"username"}
-            value={state.userName}
-            float
-            type="text"
-            onChange={(event) => {
-              setState({ ...state, userName: event.target.value });
-            }}
-            modifier="material"
-            placeholder="Your name"
-          />
+          <p>What's your name?</p>
+          <label for={"username"}>
+            <Input
+              id={"username"}
+              value={state.userName}
+              float
+              type="text"
+              onChange={(event) => {
+                setState({ ...state, userName: event.target.value });
+              }}
+              modifier="material"
+              placeholder="Your name"
+            />
+          </label>
           <p>What's your starting date?</p>
-          <Input
-            id={"date"}
-            value={state.date}
-            float
-            type={"date"}
-            onChange={(event) => {
-              setState({ ...state, date: event.target.value });
-            }}
-            modifier="material"
-          />
+          <label for={"date"}>
+            <Input
+              id={"date"}
+              value={state.date}
+              float
+              type={"date"}
+              onChange={(event) => {
+                setState({ ...state, date: event.target.value });
+              }}
+              modifier="material"
+            />
+          </label>
           <div className={"check-group"}>
             <p>Would you like to add services?</p>
-            <label>
+            <label for={"service-one"}>
               <Checkbox
+                id={"service-one"}
                 className={"checkbox"}
                 onChange={(event) => {
                   setState({
                     ...state,
-                    checkedOne: `${
-                      event.target.value + ": " + event.target.checked
-                    }`,
+                    checkedOne: `${event.target.checked}`,
                   });
                 }}
                 value={"Service one"}
@@ -85,15 +88,14 @@ const Home = (props) => {
               />
               &nbsp;Service One
             </label>
-            <label>
+            <label for={"service-two"}>
               <Checkbox
+                id={"service-two"}
                 className={"checkbox"}
                 onChange={(event) => {
                   setState({
                     ...state,
-                    checkedTwo: `${
-                      event.target.value + ": " + event.target.checked
-                    }`,
+                    checkedTwo: `${event.target.checked}`,
                   });
                 }}
                 value={"Service two"}
@@ -101,15 +103,14 @@ const Home = (props) => {
               />
               &nbsp;Service Two
             </label>
-            <label>
+            <label for={"service-three"}>
               <Checkbox
+                id={"service-three"}
                 className={"checkbox"}
                 onChange={(event) => {
                   setState({
                     ...state,
-                    checkedThree: `${
-                      event.target.value + ": " + event.target.checked
-                    }`,
+                    services: `${event.target.checked}`,
                   });
                 }}
                 value={"Service three"}
@@ -120,8 +121,9 @@ const Home = (props) => {
           </div>
           <div className={"radio-group"}>
             <p>How did you hear about us?</p>
-            <label>
+            <label for={"internet"}>
               <Radio
+                id={"internet"}
                 className={"radio"}
                 onChange={(event) => {
                   setState({ ...state, radio: event.target.value });
@@ -159,7 +161,9 @@ const Home = (props) => {
           </div>
           <div>
             <p>How long will you plan on staying?</p>
+            <label for={"duration"}></label>
             <Select
+              id={"duration"}
               modifier="material"
               onChange={(event) =>
                 setState({ ...state, selected: event.target.value })
@@ -167,13 +171,13 @@ const Home = (props) => {
             >
               <option disabled>Select an option</option>
               <option value="One day">One day</option>
-              <option value="Two days">Less than a week</option>
-              <option value="Three days">More than a week</option>
+              <option value="Less than a week">Less than a week</option>
+              <option value="More than a week">More than a week</option>
             </Select>
           </div>
           <Button
             class={"submit-button"}
-            onClick={(e) => handleClick(e)}
+            onClick={(e) => handleSubmit(e)}
             disabled={
               !state.userName || !state.date || !state.radio || !state.selected
             }
